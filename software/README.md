@@ -46,7 +46,7 @@ Our programs are written in **Python**, and each `.py` file can be run directly.
 
   This will output the detected leaks in the console.
 
-- To analyze leaks in DOM-Keccak-$f[200]$, run the following command:
+- To analyze leaks in DOM-Keccak-$f[1600]$, run the following command:
 
   ```
   python dom_f1600_leaks.py

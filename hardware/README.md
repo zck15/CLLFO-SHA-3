@@ -21,7 +21,7 @@
 
 ## Introduction
 
-This directory contains the hardware implementation code for the article [Breaking Ground: A New Area Record for Low-Latency First-Order Masked SHA-3](). It implements a 2-share masked Keccak, which is proven in the article to be first-order glitch and wire-transition robust probing secure. This implementation has the same latency (one round per cycle) as the unprotected round-based Keccak, occupies three times the area, and requires 2 fresh random bits per cycle. For considerations on integrating it into larger first-order circuits, please refer to the final section of the original paper.
+This directory contains the hardware implementation code for the article [Breaking Ground: A New Area Record for Low-Latency First-Order Masked SHA-3](). It implements a 2-share masked Keccak, which is proven in the article to be first-order glitch and register-transition robust probing secure. This implementation has the same latency (one round per cycle) as the unprotected round-based Keccak, occupies three times the area, and requires 2 fresh random bits per cycle. For considerations on integrating it into larger first-order circuits, please refer to the final section of the original paper.
 
 Note: For a fair comparison with related works, we have implemented a Keccak core that performs one permutation at a time. Modifying it to support the full SHA-3 functionality should be relatively straightforward, requiring adjustments to the control module and input handling.
 
@@ -32,6 +32,7 @@ Note: For a fair comparison with related works, we have implemented a Keccak cor
 - `.\src_tb\sim_main.cpp`: Testbench required for Verilator simulation
 - `.\Makefile`: Makefile for Verilator simulation
 - `.\syn\`:  Scripts for DC synthesis
+- `.\figs\`: Images used in this README file
 
 ## RTL Structure and Description
 
