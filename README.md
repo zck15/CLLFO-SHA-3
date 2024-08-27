@@ -31,13 +31,13 @@ We bridge this gap by conducting detailed leakage path and data dependency analy
 
 ## Repository Content
 
-This repository is divided into two main sections: hardware and software.
+This repository is divided into two main sections: [hardware](./hardware/README.md) and [software](./software/README.md).
 
-- **Hardware Implementation**:
+- [**Hardware Implementation**](./hardware/README.md):
    - **RTL Code**: Implementation of the proposed SHA-3 design.
    - **Functional Simulation Scripts**: Scripts to perform functional simulations of the hardware design.
    - **Synthesis Scripts**: Scripts for synthesizing the hardware implementation.
-- **Security Analysis Tools**:
+- [**Security Analysis Tools**](./software/README.md):
    - **DOM-Keccak Leakage Analysis**: Code for conducting leakage analysis on the SHA-3 implementation.
    - **Design Space Exploration**: Programs for exploring different design configurations.
    - **Security Proofs**: Code supporting the theoretical security proofs provided in the paper.
