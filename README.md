@@ -4,12 +4,12 @@ Welcome to the source code repository for the paper **[Breaking Ground: A New Ar
 
 **Table of Contents:**
 
-- [Repository Overview](#Repository Overview)
-  - [Paper Abstract](#Paper Abstract)
-  - [Authors and Affiliations](#Authors and Affiliations)
-- [Repository Content](#Repository Content)
+- [Repository Overview](#repository-overview)
+  - [Paper Abstract](#paper-abstract)
+  - [Authors and Affiliations](#authors-and-affiliations)
+- [Repository Content](#repository-content)
 - [Contact](#contact)
-- [License](#License)
+- [License](#license)
 
 ### Paper Abstract
 

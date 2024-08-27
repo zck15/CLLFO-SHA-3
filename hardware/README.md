@@ -2,22 +2,22 @@
 
 **Table of Contents:**
 
-- [Introduction](#Introduction)
-- [File Structure](#File Structure)
-- [RTL Structure and Description](#RTL Structure and Description)
-  - [Module Structure](#Module Structure)
-  - [Port Description](#Port Description)
-  - [Timing Description](#Timing Description)
-- [Functional Simulation](#Functional Simulation)
-  - [Instructions on Functional Simulation](#Instructions on Functional Simulation)
-  - [Output of Functional Simulation](#Output of Functional Simulation)
-  - [Tested Environment](#Tested Environment)
-- [Synthesis](#Synthesis)
-  - [Instructions on Synthesis](#Instructions on Synthesis)
-  - [Output of Synthesis](#Output of Synthesis)
-  - [Modify Scripts](#Modify Scripts)
-- [Contact](#Contact)
-- [License](#License)
+- [Introduction](#introduction)
+- [File Structure](#file-structure)
+- [RTL Structure and Description](#rtl-structure-and-description)
+  - [Module Structure](#module-structure)
+  - [Port Description](#port-description)
+  - [Timing Description](#timing-description)
+- [Functional Simulation](#functional-simulation)
+  - [Instructions on Functional Simulation](#instructions-on-functional-simulation)
+  - [Output of Functional Simulation](#output-of-functional-simulation)
+  - [Tested Environment](#tested-environment)
+- [Synthesis](#synthesis)
+  - [Instructions on Synthesis](#instructions-on-synthesis)
+  - [Output of Synthesis](#output-of-synthesis)
+  - [Modify Scripts](#modify-scripts)
+- [Contact](#contact)
+- [License](#license)
 
 ## Introduction
 

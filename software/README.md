@@ -2,15 +2,15 @@
 
 **Table of Contents:**
 
-- [Introduction](#Introduction)
-- [Dependencies](#Dependencies)
-- [Usage](#Usage)
-  - [Leakage Analysis](#Leakage Analysis)
-  - [Design Space Search](#Design Space Search)
-  - [Security Verification](#Security Verification)
-- [File Structure](#File Structure)
+- [Introduction](#introduction)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+  - [Leakage Analysis](#leakage-analysis)
+  - [Design Space Search](#design-space-search)
+  - [Security Verification](#security-verification)
+- [File Structure](#file-structure)
 - [Contact](#contact)
-- [License](#License)
+- [License](#license)
 
 ## Introduction
 
