@@ -8,6 +8,7 @@
   - [Leakage Analysis](#leakage-analysis)
   - [Design Space Search](#design-space-search)
   - [Security Verification](#security-verification)
+- [Execution Time Estimates](#execution-time-estimates)
 - [File Structure](#file-structure)
 - [Contact](#contact)
 - [License](#license)
@@ -153,6 +154,31 @@ Our programs are written in **Python**, and each `.py` file can be run directly.
   ```
   python ct_uniform_proofs_reader.py glitch+trans_ct_uniform_proofs.json 0 2 45 3
   ```
+## Execution Time Estimates
+
+To help you estimate how long each script might take to run, here are some rough execution time estimates based on our testing environment:
+
+| Script                      | Estimated Execution Time          |
+| --------------------------- | --------------------------------- |
+| **Leakage Analysis** | |
+| `dom_f200_leaks.py`   | Less than 1 second |
+| `dom_f1600_leaks.py`  | ~3 seconds |
+| `dom_independence_check.py`   | Less than 1 second |
+| **Design Space Search** | |
+| `design_space_search.py`  | ~29 minutes (on a 10-core laptop) |
+| **Security Verification** | |
+| `glitch_list_generation.py`   | ~2 seconds |
+| `glitch_first_round_non_completeness.py`  | Less than 1 second |
+| `glitch_ct_uniform_proofs_generation.py`  | ~2 minutes |
+| `ct_uniform_proofs_reader.py` | ~2 seconds |
+| `glitch_partition_subsets.py` | ~4 seconds |
+| `glitch_independence_check.py`    | Less than 1 second |
+| `glitch+trans_ct_uniform_proofs_generation.py`    | ~2 minutes |
+| `glitch+trans_partition_subsets.py`   | ~1 minute |
+| `glitch+trans_independence_check.py`  | Less than 1 second |
+
+**Note:** The execution times provided are approximate and may vary depending on the specific hardware and software environment.
+
 
 ## File Structure
 

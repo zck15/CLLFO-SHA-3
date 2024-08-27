@@ -11,10 +11,12 @@
 - [Functional Simulation](#functional-simulation)
   - [Instructions on Functional Simulation](#instructions-on-functional-simulation)
   - [Output of Functional Simulation](#output-of-functional-simulation)
+  - [Estimated Execution Time of Simulation](#estimated-execution-time-of-simulation)
   - [Tested Environment](#tested-environment)
 - [Synthesis](#synthesis)
   - [Instructions on Synthesis](#instructions-on-synthesis)
   - [Output of Synthesis](#output-of-synthesis)
+  - [Estimated Execution Time of Synthesis](#estimated-execution-time-of-synthesis)
   - [Modify Scripts](#modify-scripts)
 - [Contact](#contact)
 - [License](#license)
@@ -122,6 +124,10 @@ make run_SHAKE256
 
 - Intermediate files will be generated in the `.\build\` directory, which can be cleaned using the `make clean` command.
 
+### Estimated Execution Time of Simulation
+
+- Running all default KATs: ~1 minute (depending on the number of tests and system performance)
+
 ### Tested Environment
 
 - Since this implementation only supports one permutation at a time, only short message KATs from NIST have been tested. Message input lengths range from 0 to the maximum value for a single absorb.
@@ -172,6 +178,10 @@ Enter the `.\syn\run\` directory and run the script:
 - Check the timing report at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\report\keccak_top.report_timing`.
 - Check the area report at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\report\keccak_top.area-hier.rpt`.
 - The generated netlist is at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\db\keccak_top.v`.
+
+### Estimated Execution Time of Synthesis
+
+- Approximately 3 minutes under default constraints (execution time may vary depending on area and clock constraints, as well as system performance).
 
 ### Modify Scripts
 
