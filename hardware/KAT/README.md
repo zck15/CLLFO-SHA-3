@@ -1,0 +1,3 @@
+The KAT files in this directory are extracted from the compressed files `sha-3bittestvectors.zip` and `shakebittestvectors.zip` from the website [Cryptographic Algorithm Validation Program | CSRC (nist.gov)](https://csrc.nist.gov/Projects/Cryptographic-Algorithm-Validation-Program/Secure-Hashing#sha3vsha3vss).
+
+We only test the short message KAT, because our code in this version only support one permutation.

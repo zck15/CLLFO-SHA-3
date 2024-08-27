@@ -1,0 +1,33 @@
+# library_setup_dc, library setup
+# Copyright (C) 2024, Cankun Zhao, Leibo Liu. All rights reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Please see LICENSE and README for license and further instructions.
+#
+# Contact: zhaock97@gmail.com
+
+set LIB typical
+
+source -e -v ../../filelist/file_list_$TOP\_$VER.tcl
+
+set DESIGN_HOME   /path_to_lib/NangateOpenCellLibrary_PDKv1_3_v2010_12
+
+set search_path ". $DESIGN_HOME/Front_End/Liberty/CCS "
+
+set target_library "NangateOpenCellLibrary_$LIB\_ccs.db"
+
+set target_std_lib_name "NangateOpenCellLibrary"
+
+set synthetic_library "dw_foundation.sldb"
+
+set link_library "* $target_library $synthetic_library " 

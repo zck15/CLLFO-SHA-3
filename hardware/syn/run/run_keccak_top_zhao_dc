@@ -1,0 +1,46 @@
+#!/bin/csh
+# run_keccak_top_zhao_dc, script for parameter adjustment and invoking DC.
+# Copyright (C) 2024, Cankun Zhao, Leibo Liu. All rights reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Please see LICENSE and README for license and further instructions.
+#
+# Contact: zhaock97@gmail.com
+
+set VER=zhao
+set TOP=keccak_top
+set CLK_PERIOD=1.310
+set LIB=typical
+set SCR=synthesis_dc_$TOP\_$VER.tcl
+
+set REPORT=$VER\_$TOP\_CLK_PERIOD_$CLK_PERIOD\_$LIB\_autoWLM_dc_main
+
+sed -i  "19s/.*/set LIB $LIB/g" ./library_setup_dc.tcl
+
+cd ../out_dir
+rm -rf $REPORT
+mkdir $REPORT
+cd $REPORT
+mkdir log
+mkdir db
+mkdir report
+
+rm ../../script/$SCR
+cp ../../script/synthesis_dc.tcl ../../script/$SCR
+sed -i  "19s/.*/set VER $VER/g" ../../script/$SCR
+sed -i  "20s/.*/set TOP $TOP/g" ../../script/$SCR
+sed -i  "21s/.*/set CLK_PERIOD $CLK_PERIOD/g" ../../script/$SCR
+sed -i  "22s/.*/set LIB $LIB/g" ../../script/$SCR
+sed -i  "23s/.*/set REPORT $REPORT/g" ../../script/$SCR
+
+dc_shell -f ../../script/$SCR | tee log/syn_$REPORT.log
