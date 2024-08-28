@@ -1,0 +1,418 @@
+# -------------------------------------------------------------------------
+# Pin assignment of Spartan-6 on SASEBO-GIII
+# 
+# File name   : pin_sasebo_giii_spartan6.ucf
+# Version     : 1.2
+# Created     : APR/02/2012
+# Last update : APR/25/2013
+# Desgined by : Toshihiro Katashita
+# 
+# 
+# Copyright (C) 2012, 2013 AIST
+# 
+# By using this code, you agree to the following terms and conditions.
+# 
+# This code is copyrighted by AIST ("us").
+# 
+# Permission is hereby granted to copy, reproduce, redistribute or
+# otherwise use this code as long as: there is no monetary profit gained
+# specifically from the use or reproduction of this code, it is not sold,
+# rented, traded or otherwise marketed, and this copyright notice is
+# included prominently in any copy made.
+# 
+# We shall not be liable for any damages, including without limitation
+# direct, indirect, incidental, special or consequential damages arising
+# from the use of this code.
+# 
+# When you publish any results arising from the use of this code, we will
+# appreciate it if you can cite our webpage.
+# (http://www.risec.aist.go.jp/project/sasebo/)
+# -------------------------------------------------------------------------
+
+#================================================ Timing constraint
+# clk_osc : 24.000MHz
+NET "clk_osc" TNM_NET = "clk_osc_grp";
+TIMESPEC "TS_clk_osc" = PERIOD : "clk_osc_grp" : 41.666 ns HIGH 50.0%;
+
+# TIMEGRP usb_io = PADS(*usb_dio<*> : usb_*);
+# TIMEGRP "usb_io" OFFSET = IN  15.0 ns BEFORE "clk_osc";
+# TIMEGRP "usb_io" OFFSET = OUT 15.0 ns AFTER  "clk_osc";
+
+#================================================ Pin assignment
+#################
+# CLOCK / RESET #
+#################
+NET "clk_osc"         LOC="M3"   | IOSTANDARD=LVCMOS25 ; # IO_L42P_GCLK25_TRDY2_M3UDM_3
+NET "clk_osc_inh_n"   LOC="M1"   | IOSTANDARD=LVCMOS25 ; # IO_L38N_M3DQ3_3
+
+#NET "s_clk_ext_n<0>" LOC="C12"  | IOSTANDARD=LVCMOS25 ; # IO_L36N_GCLK14_0
+#NET "s_clk_ext_p<0>" LOC="D11"  | IOSTANDARD=LVCMOS25 ; # IO_L36P_GCLK15_0
+#NET "s_clk_ext_n<1>" LOC="A11"  | IOSTANDARD=LVCMOS25 ; # IO_L35N_GCLK16_0
+#NET "s_clk_ext_p<1>" LOC="C11"  | IOSTANDARD=LVCMOS25 ; # IO_L35P_GCLK17_0
+
+NET "rst_power_on_n"  LOC="M8"   | IOSTANDARD=LVCMOS25 ; # IO_L23N_3
+
+##########
+# Switch #
+##########
+NET "rst_push_switch" LOC="M19"  | IOSTANDARD=LVCMOS15 ; # IO_L53P_1
+
+NET "dipsw<0>"        LOC="R20"  | IOSTANDARD=LVCMOS15 ; # IO_L49P_M1DQ10_1
+NET "dipsw<1>"        LOC="T21"  | IOSTANDARD=LVCMOS15 ; # IO_L50P_M1UDQS_1
+NET "dipsw<2>"        LOC="U20"  | IOSTANDARD=LVCMOS15 ; # IO_L51P_M1DQ12_1
+NET "dipsw<3>"        LOC="V21"  | IOSTANDARD=LVCMOS15 ; # IO_L52P_M1DQ14_1
+NET "dipsw<4>"        LOC="W22"  | IOSTANDARD=LVCMOS15 ; # IO_L60N_1
+NET "dipsw<5>"        LOC="V22"  | IOSTANDARD=LVCMOS15 ; # IO_L52N_M1DQ15_1
+NET "dipsw<6>"        LOC="U22"  | IOSTANDARD=LVCMOS15 ; # IO_L51N_M1DQ13_1
+NET "dipsw<7>"        LOC="T22"  | IOSTANDARD=LVCMOS15 ; # IO_L50N_M1UDQSN_1
+
+#######
+# LED #
+#######
+NET "led<0>"          LOC="N22"  | IOSTANDARD=LVCMOS15 ; # IO_L47N_LDC_M1DQ1_1
+NET "led<1>"          LOC="N20"  | IOSTANDARD=LVCMOS15 ; # IO_L47P_FWE_B_M1DQ0_1
+NET "led<2>"          LOC="P20"  | IOSTANDARD=LVCMOS15 ; # IO_L59N_1
+NET "led<3>"          LOC="P22"  | IOSTANDARD=LVCMOS15 ; # IO_L48N_M1DQ9_1
+NET "led<4>"          LOC="P21"  | IOSTANDARD=LVCMOS15 ; # IO_L48P_HDC_M1DQ8_1
+NET "led<5>"          LOC="H5"   | IOSTANDARD=LVCMOS25 ; # IO_L49N_M3A2_3
+NET "led<6>"          LOC="H6"   | IOSTANDARD=LVCMOS25 ; # IO_L49P_M3A7_3
+NET "led<7>"          LOC="J6"   | IOSTANDARD=LVCMOS25 ; # IO_L45N_M3ODT_3
+NET "led<8>"          LOC="N6"   | IOSTANDARD=LVCMOS25 ; # IO_L11P_3
+NET "led<9>"          LOC="M7"   | IOSTANDARD=LVCMOS25 ; # IO_L23P_3
+
+########
+# GPIO #
+########
+NET "gpio<0>"         LOC="F7"   | IOSTANDARD=LVCMOS25 ; # IO_L80N_3
+NET "gpio<1>"         LOC="G4"   | IOSTANDARD=LVCMOS25 ; # IO_L51P_M3A10_3
+NET "gpio<2>"         LOC="G6"   | IOSTANDARD=LVCMOS25 ; # IO_L55P_M3A13_3
+NET "gpio<3>"         LOC="G7"   | IOSTANDARD=LVCMOS25 ; # IO_L80P_3
+#NET "s_header<4>"    LOC="A18"  | IOSTANDARD=LVCMOS25 ; # IO_L65N_SCP2_0
+#NET "s_header<5>"    LOC="B18"  | IOSTANDARD=LVCMOS25 ; # IO_L65P_SCP3_0
+#NET "s_header<6>"    LOC="H8"   | IOSTANDARD=LVCMOS25 ; # IO_L59N_3
+#NET "s_header<7>"    LOC="J7"   | IOSTANDARD=LVCMOS25 ; # IO_L59P_3
+#NET "s_header<8>"    LOC="K8"   | IOSTANDARD=LVCMOS25 ; # IO_L57N_VREF_3
+#NET "s_header<9>"    LOC="K7"   | IOSTANDARD=LVCMOS25 ; # IO_L57P_3
+
+############################################
+# Kintex-7 HPIC (LVCMOS15, SSTL15 or HTSL) #
+############################################
+#NET "ks_hpic_clk_n"  LOC="K22"  | IOSTANDARD=DIFF_HSTL_I ; # IO_L44N_A2_M1DQ7_1
+#NET "ks_hpic_clk_p"  LOC="K21"  | IOSTANDARD=DIFF_HSTL_I ; # IO_L44P_A3_M1DQ6_1
+
+#NET "ks_hpic_n<0>"   LOC="D22"  | IOSTANDARD=LVCMOS15 ; # IO_L31N_A18_M1A12_1
+NET "c2m_dout<0>"     LOC="D21"  | IOSTANDARD=LVCMOS15 ; # IO_L31P_A19_M1CKE_1
+#NET "ks_hpic_n<1>"   LOC="B20"  | IOSTANDARD=LVCMOS15 ; # IO_L1N_A24_VREF_1
+NET "c2m_dout<1>"     LOC="C19"  | IOSTANDARD=LVCMOS15 ; # IO_L1P_A25_1
+#NET "ks_hpic_n<2>"   LOC="B22"  | IOSTANDARD=LVCMOS15 ; # IO_L19N_1
+NET "c2m_dout<2>"     LOC="B21"  | IOSTANDARD=LVCMOS15 ; # IO_L19P_1
+#NET "ks_hpic_n<3>"   LOC="D20"  | IOSTANDARD=LVCMOS15 ; # IO_L29N_A22_M1A14_1
+NET "c2m_dout<3>"     LOC="D19"  | IOSTANDARD=LVCMOS15 ; # IO_L29P_A23_M1A13_1
+#NET "ks_hpic_n<4>"   LOC="C22"  | IOSTANDARD=LVCMOS15 ; # IO_L32N_A16_M1A9_1
+NET "c2m_dout<4>"     LOC="C20"  | IOSTANDARD=LVCMOS15 ; # IO_L32P_A17_M1A8_1
+#NET "ks_hpic_n<5>"   LOC="F19"  | IOSTANDARD=LVCMOS15 ; # IO_L30N_A20_M1A11_1
+NET "c2m_dout<5>"     LOC="F18"  | IOSTANDARD=LVCMOS15 ; # IO_L30P_A21_M1RESET_1
+#NET "ks_hpic_n<6>"   LOC="A21"  | IOSTANDARD=LVCMOS15 ; # IO_L20N_1
+NET "c2m_dout<6>"     LOC="A20"  | IOSTANDARD=LVCMOS15 ; # IO_L20P_1
+#NET "ks_hpic_n<7>"   LOC="F22"  | IOSTANDARD=LVCMOS15 ; # IO_L37N_A6_M1A1_1
+NET "c2m_dout<7>"     LOC="F21"  | IOSTANDARD=LVCMOS15 ; # IO_L37P_A7_M1A0_1
+#NET "ks_hpic_n<8>"   LOC="K19"  | IOSTANDARD=LVCMOS15 ; # IO_L40N_GCLK10_M1A6_1
+NET "c2m_dout<8>"     LOC="K20"  | IOSTANDARD=LVCMOS15 ; # IO_L40P_GCLK11_M1A5_1
+#NET "ks_hpic_n<9>"   LOC="H22"  | IOSTANDARD=LVCMOS15 ; # IO_L41N_GCLK8_M1CASN_1
+NET "c2m_dout<9>"     LOC="H21"  | IOSTANDARD=LVCMOS15 ; # IO_L41P_GCLK9_IRDY1_M1RASN_1
+#NET "ks_hpic_n<10>"  LOC="L19"  | IOSTANDARD=LVCMOS15 ; # IO_L42N_GCLK6_TRDY1_M1LDM_1
+NET "c2m_dout<10>"    LOC="M20"  | IOSTANDARD=LVCMOS15 ; # IO_L42P_GCLK7_M1UDM_1
+#NET "ks_hpic_n<11>"  LOC="J22"  | IOSTANDARD=LVCMOS15 ; # IO_L43N_GCLK4_M1DQ5_1
+NET "c2m_dout<11>"    LOC="J20"  | IOSTANDARD=LVCMOS15 ; # IO_L43P_GCLK5_M1DQ4_1
+#NET "ks_hpic_n<12>"  LOC="J19"  | IOSTANDARD=LVCMOS15 ; # IO_L38N_A4_M1CLKN_1
+NET "c2m_dout<12>"    LOC="H20"  | IOSTANDARD=LVCMOS15 ; # IO_L38P_A5_M1CLK_1
+#NET "ks_hpic_n<13>"  LOC="L22"  | IOSTANDARD=LVCMOS15 ; # IO_L45N_A0_M1LDQSN_1
+NET "c2m_dout<13>"    LOC="L20"  | IOSTANDARD=LVCMOS15 ; # IO_L45P_A1_M1LDQS_1
+#NET "ks_hpic_n<14>"  LOC="E22"  | IOSTANDARD=LVCMOS15 ; # IO_L35N_A10_M1A2_1
+NET "c2m_dout<14>"    LOC="E20"  | IOSTANDARD=LVCMOS15 ; # IO_L35P_A11_M1A7_1
+#NET "ks_hpic_n<15>"  LOC="F20"  | IOSTANDARD=LVCMOS15 ; # IO_L33N_A14_M1A4_1
+NET "c2m_dout<15>"    LOC="G19"  | IOSTANDARD=LVCMOS15 ; # IO_L33P_A15_M1A10_1
+#NET "ks_hpic_n<16>"  LOC="G22"  | IOSTANDARD=LVCMOS15 ; # IO_L39N_M1ODT_1
+NET "c2m_rst_n"       LOC="G20"  | IOSTANDARD=LVCMOS15 ; # IO_L39P_M1A3_1
+#NET "ks_hpic_n<17>"  LOC="H18"  | IOSTANDARD=LVCMOS15 ; # IO_L34N_A12_M1BA2_1
+NET "c2m_en_lvl"      LOC="H19"  | IOSTANDARD=LVCMOS15 ; # IO_L34P_A13_M1WE_1
+#NET "ks_hpic_n<18>"  LOC="M22"  | IOSTANDARD=LVCMOS15 ; # IO_L46N_FOE_B_M1DQ3_1
+NET "c2m_done_lvl"    LOC="M21"  | IOSTANDARD=LVCMOS15 ; # IO_L46P_FCS_B_M1DQ2_1
+
+
+#######################################
+# Kintex-7 HRIC (LVCMOS25 or LVDS_25) #
+#######################################
+#NET "ks_hric_n<0>"   LOC="C8"   | IOSTANDARD=LVCMOS25 ; # IO_L7N_0
+NET "m2c_din<0>"      LOC="D9"   | IOSTANDARD=LVCMOS25 ; # IO_L7P_0
+#NET "ks_hric_n<1>"   LOC="A15"  | IOSTANDARD=LVCMOS25 ; # IO_L51N_0
+NET "m2c_din<1>"      LOC="C15"  | IOSTANDARD=LVCMOS25 ; # IO_L51P_0
+#NET "ks_hric_n<2>"   LOC="D17"  | IOSTANDARD=LVCMOS25 ; # IO_L66N_SCP0_0
+NET "m2c_din<2>"      LOC="E16"  | IOSTANDARD=LVCMOS25 ; # IO_L66P_SCP1_0
+#NET "ks_hric_n<3>"   LOC="A14"  | IOSTANDARD=LVCMOS25 ; # IO_L50N_0
+NET "m2c_din<3>"      LOC="B14"  | IOSTANDARD=LVCMOS25 ; # IO_L50P_0
+#NET "ks_hric_n<4>"   LOC="A17"  | IOSTANDARD=LVCMOS25 ; # IO_L64N_SCP4_0
+NET "m2c_din<4>"      LOC="C17"  | IOSTANDARD=LVCMOS25 ; # IO_L64P_SCP5_0
+#NET "ks_hric_n<5>"   LOC="D8"   | IOSTANDARD=LVCMOS25 ; # IO_L32N_0
+NET "m2c_din<5>"      LOC="D7"   | IOSTANDARD=LVCMOS25 ; # IO_L32P_0
+#NET "ks_hric_n<6>"   LOC="A16"  | IOSTANDARD=LVCMOS25 ; # IO_L63N_SCP6_0
+NET "m2c_din<6>"      LOC="B16"  | IOSTANDARD=LVCMOS25 ; # IO_L63P_SCP7_0
+#NET "ks_hric_n<7>"   LOC="A6"   | IOSTANDARD=LVCMOS25 ; # IO_L4N_0
+NET "m2c_din<7>"      LOC="B6"   | IOSTANDARD=LVCMOS25 ; # IO_L4P_0
+#NET "ks_hric_n<8>"   LOC="A10"  | IOSTANDARD=LVCMOS25 ; # IO_L34N_GCLK18_0
+NET "m2c_din<8>"      LOC="B10"  | IOSTANDARD=LVCMOS25 ; # IO_L34P_GCLK19_0
+#NET "ks_hric_n<9>"   LOC="A12"  | IOSTANDARD=LVCMOS25 ; # IO_L37N_GCLK12_0
+NET "m2c_din<9>"      LOC="B12"  | IOSTANDARD=LVCMOS25 ; # IO_L37P_GCLK13_0
+#NET "ks_hric_n<10>"  LOC="A7"   | IOSTANDARD=LVCMOS25 ; # IO_L5N_0
+NET "m2c_din<10>"     LOC="C7"   | IOSTANDARD=LVCMOS25 ; # IO_L5P_0
+#NET "ks_hric_n<11>"  LOC="C14"  | IOSTANDARD=LVCMOS25 ; # IO_L49N_0
+NET "m2c_din<11>"     LOC="D14"  | IOSTANDARD=LVCMOS25 ; # IO_L49P_0
+#NET "ks_hric_n<12>"  LOC="C16"  | IOSTANDARD=LVCMOS25 ; # IO_L62N_VREF_0
+NET "m2c_din<12>"     LOC="D15"  | IOSTANDARD=LVCMOS25 ; # IO_L62P_0
+#NET "ks_hric_n<13>"  LOC="A13"  | IOSTANDARD=LVCMOS25 ; # IO_L38N_VREF_0
+NET "m2c_din<13>"     LOC="C13"  | IOSTANDARD=LVCMOS25 ; # IO_L38P_0
+#NET "ks_hric_n<14>"  LOC="C10"  | IOSTANDARD=LVCMOS25 ; # IO_L33N_0
+NET "m2c_din<14>"     LOC="D10"  | IOSTANDARD=LVCMOS25 ; # IO_L33P_0
+#NET "ks_hric_n<15>"  LOC="C6"   | IOSTANDARD=LVCMOS25 ; # IO_L3N_0
+NET "m2c_din<15>"     LOC="D6"   | IOSTANDARD=LVCMOS25 ; # IO_L3P_0
+#NET "ks_hric_n<16>"  LOC="A5"   | IOSTANDARD=LVCMOS25 ; # IO_L2N_0
+NET "device_rdy"      LOC="C5"   | IOSTANDARD=LVCMOS25 ; # IO_L2P_0
+#NET "ks_hric_n<17>"  LOC="A8"   | IOSTANDARD=LVCMOS25 ; # IO_L6N_0
+NET "m2c_en_lvl"      LOC="B8"   | IOSTANDARD=LVCMOS25 ; # IO_L6P_0
+#NET "ks_hric_n<18>"  LOC="A9"   | IOSTANDARD=LVCMOS25 ; # IO_L8N_VREF_0
+NET "m2c_done_lvl"    LOC="C9"   | IOSTANDARD=LVCMOS25 ; # IO_L8P_0
+
+#############################
+# FMC (LVDS_25 or LVCMOS25) #
+#############################
+#NET "s_fmc_clk_m2c_n<0>" LOC="K4"   | IOSTANDARD=LVCMOS25 ; # IO_L43N_GCLK22_IRDY2_M3CASN_3
+#NET "s_fmc_clk_m2c_p<0>" LOC="K5"   | IOSTANDARD=LVCMOS25 ; # IO_L43P_GCLK23_M3RASN_3
+#NET "s_fmc_clk_m2c_n<1>" LOC="J1"   | IOSTANDARD=LVCMOS25 ; # IO_L41N_GCLK26_M3DQ5_3
+#NET "s_fmc_clk_m2c_p<1>" LOC="J3"   | IOSTANDARD=LVCMOS25 ; # IO_L41P_GCLK27_M3DQ4_3
+
+#NET "s_fmc_la_n<0>"  LOC="AB11" | IOSTANDARD=LVCMOS25 ; # IO_L32N_GCLK28_2
+#NET "s_fmc_la_p<0>"  LOC="Y11"  | IOSTANDARD=LVCMOS25 ; # IO_L32P_GCLK29_2
+#NET "s_fmc_la_n<1>"  LOC="Y12"  | IOSTANDARD=LVCMOS25 ; # IO_L29N_GCLK2_2
+#NET "s_fmc_la_p<1>"  LOC="W12"  | IOSTANDARD=LVCMOS25 ; # IO_L29P_GCLK3_2
+#NET "s_fmc_la_n<2>"  LOC="AB2"  | IOSTANDARD=LVCMOS25 ; # IO_L64N_D9_2
+#NET "s_fmc_la_p<2>"  LOC="AA2"  | IOSTANDARD=LVCMOS25 ; # IO_L64P_D8_2
+#NET "s_fmc_la_n<3>"  LOC="AB3"  | IOSTANDARD=LVCMOS25 ; # IO_L58N_2
+#NET "s_fmc_la_p<3>"  LOC="Y3"   | IOSTANDARD=LVCMOS25 ; # IO_L58P_2
+#NET "s_fmc_la_n<4>"  LOC="AB4"  | IOSTANDARD=LVCMOS25 ; # IO_L57N_2
+#NET "s_fmc_la_p<4>"  LOC="AA4"  | IOSTANDARD=LVCMOS25 ; # IO_L57P_2
+#NET "s_fmc_la_n<5>"  LOC="Y8"   | IOSTANDARD=LVCMOS25 ; # IO_L47N_2
+#NET "s_fmc_la_p<5>"  LOC="W9"   | IOSTANDARD=LVCMOS25 ; # IO_L47P_2
+#NET "s_fmc_la_n<6>"  LOC="V9"   | IOSTANDARD=LVCMOS25 ; # IO_L50N_2
+#NET "s_fmc_la_p<6>"  LOC="U9"   | IOSTANDARD=LVCMOS25 ; # IO_L50P_2
+#NET "s_fmc_la_n<7>"  LOC="AB8"  | IOSTANDARD=LVCMOS25 ; # IO_L45N_2
+#NET "s_fmc_la_p<7>"  LOC="AA8"  | IOSTANDARD=LVCMOS25 ; # IO_L45P_2
+#NET "s_fmc_la_n<8>"  LOC="V5"   | IOSTANDARD=LVCMOS25 ; # IO_L63N_2
+#NET "s_fmc_la_p<8>"  LOC="U6"   | IOSTANDARD=LVCMOS25 ; # IO_L63P_2
+#NET "s_fmc_la_n<9>"  LOC="AB9"  | IOSTANDARD=LVCMOS25 ; # IO_L43N_2
+#NET "s_fmc_la_p<9>"  LOC="Y9"   | IOSTANDARD=LVCMOS25 ; # IO_L43P_2
+#NET "s_fmc_la_n<10>" LOC="Y10"  | IOSTANDARD=LVCMOS25 ; # IO_L44N_2
+#NET "s_fmc_la_p<10>" LOC="W10"  | IOSTANDARD=LVCMOS25 ; # IO_L44P_2
+#NET "s_fmc_la_n<11>" LOC="V7"   | IOSTANDARD=LVCMOS25 ; # IO_L46N_2
+#NET "s_fmc_la_p<11>" LOC="W8"   | IOSTANDARD=LVCMOS25 ; # IO_L46P_2
+#NET "s_fmc_la_n<12>" LOC="AB10" | IOSTANDARD=LVCMOS25 ; # IO_L41N_VREF_2
+#NET "s_fmc_la_p<12>" LOC="AA10" | IOSTANDARD=LVCMOS25 ; # IO_L41P_2
+#NET "s_fmc_la_n<13>" LOC="T11"  | IOSTANDARD=LVCMOS25 ; # IO_L40N_2
+#NET "s_fmc_la_p<13>" LOC="R11"  | IOSTANDARD=LVCMOS25 ; # IO_L40P_2
+#NET "s_fmc_la_n<14>" LOC="W11"  | IOSTANDARD=LVCMOS25 ; # IO_L42N_2
+#NET "s_fmc_la_p<14>" LOC="V11"  | IOSTANDARD=LVCMOS25 ; # IO_L42P_2
+#NET "s_fmc_la_n<15>" LOC="R13"  | IOSTANDARD=LVCMOS25 ; # IO_L23N_2
+#NET "s_fmc_la_p<15>" LOC="T14"  | IOSTANDARD=LVCMOS25 ; # IO_L23P_2
+#NET "s_fmc_la_n<16>" LOC="W13"  | IOSTANDARD=LVCMOS25 ; # IO_L18N_2
+#NET "s_fmc_la_p<16>" LOC="V13"  | IOSTANDARD=LVCMOS25 ; # IO_L18P_2
+#NET "s_fmc_la_n<17>" LOC="AB12" | IOSTANDARD=LVCMOS25 ; # IO_L31N_GCLK30_D15_2
+#NET "s_fmc_la_p<17>" LOC="AA12" | IOSTANDARD=LVCMOS25 ; # IO_L31P_GCLK31_D14_2
+#NET "s_fmc_la_n<18>" LOC="AB13" | IOSTANDARD=LVCMOS25 ; # IO_L30N_GCLK0_USERCCLK_2
+#NET "s_fmc_la_p<18>" LOC="Y13"  | IOSTANDARD=LVCMOS25 ; # IO_L30P_GCLK1_D13_2
+#NET "s_fmc_la_n<19>" LOC="U16"  | IOSTANDARD=LVCMOS25 ; # IO_L8N_2
+#NET "s_fmc_la_p<19>" LOC="U17"  | IOSTANDARD=LVCMOS25 ; # IO_L8P_2
+#NET "s_fmc_la_n<20>" LOC="T15"  | IOSTANDARD=LVCMOS25 ; # IO_L7N_2
+#NET "s_fmc_la_p<20>" LOC="T16"  | IOSTANDARD=LVCMOS25 ; # IO_L7P_2
+#NET "s_fmc_la_n<21>" LOC="AB15" | IOSTANDARD=LVCMOS25 ; # IO_L21N_2
+#NET "s_fmc_la_p<21>" LOC="Y15"  | IOSTANDARD=LVCMOS25 ; # IO_L21P_2
+#NET "s_fmc_la_n<22>" LOC="AB14" | IOSTANDARD=LVCMOS25 ; # IO_L16N_VREF_2
+#NET "s_fmc_la_p<22>" LOC="AA14" | IOSTANDARD=LVCMOS25 ; # IO_L16P_2
+#NET "s_fmc_la_n<23>" LOC="Y14"  | IOSTANDARD=LVCMOS25 ; # IO_L20N_2
+#NET "s_fmc_la_p<23>" LOC="W14"  | IOSTANDARD=LVCMOS25 ; # IO_L20P_2
+#NET "s_fmc_la_n<24>" LOC="AB17" | IOSTANDARD=LVCMOS25 ; # IO_L15N_2
+#NET "s_fmc_la_p<24>" LOC="Y17"  | IOSTANDARD=LVCMOS25 ; # IO_L15P_2
+#NET "s_fmc_la_n<25>" LOC="AB16" | IOSTANDARD=LVCMOS25 ; # IO_L19N_2
+#NET "s_fmc_la_p<25>" LOC="AA16" | IOSTANDARD=LVCMOS25 ; # IO_L19P_2
+#NET "s_fmc_la_n<26>" LOC="W17"  | IOSTANDARD=LVCMOS25 ; # IO_L11N_2
+#NET "s_fmc_la_p<26>" LOC="V17"  | IOSTANDARD=LVCMOS25 ; # IO_L11P_2
+#NET "s_fmc_la_n<27>" LOC="T17"  | IOSTANDARD=LVCMOS25 ; # IO_L4N_VREF_2
+#NET "s_fmc_la_p<27>" LOC="T18"  | IOSTANDARD=LVCMOS25 ; # IO_L4P_2
+#NET "s_fmc_la_n<28>" LOC="Y18"  | IOSTANDARD=LVCMOS25 ; # IO_L6N_2
+#NET "s_fmc_la_p<28>" LOC="W18"  | IOSTANDARD=LVCMOS25 ; # IO_L6P_2
+#NET "s_fmc_la_n<29>" LOC="R15"  | IOSTANDARD=LVCMOS25 ; # IO_L10N_2
+#NET "s_fmc_la_p<29>" LOC="R16"  | IOSTANDARD=LVCMOS25 ; # IO_L10P_2
+#NET "s_fmc_la_n<30>" LOC="AB19" | IOSTANDARD=LVCMOS25 ; # IO_L5N_2
+#NET "s_fmc_la_p<30>" LOC="Y19"  | IOSTANDARD=LVCMOS25 ; # IO_L5P_2
+#NET "s_fmc_la_n<31>" LOC="AB18" | IOSTANDARD=LVCMOS25 ; # IO_L14N_D12_2
+#NET "s_fmc_la_p<31>" LOC="AA18" | IOSTANDARD=LVCMOS25 ; # IO_L14P_D11_2
+#NET "s_fmc_la_n<32>" LOC="AB21" | IOSTANDARD=LVCMOS25 ; # IO_L2N_CMPMOSI_2
+#NET "s_fmc_la_p<32>" LOC="AA21" | IOSTANDARD=LVCMOS25 ; # IO_L2P_CMPCLK_2
+#NET "s_fmc_la_n<33>" LOC="V18"  | IOSTANDARD=LVCMOS25 ; # IO_L9N_2
+#NET "s_fmc_la_p<33>" LOC="V19"  | IOSTANDARD=LVCMOS25 ; # IO_L9P_2
+
+#NET "s_fmc_pg_en"    LOC="R8"   | IOSTANDARD=LVCMOS25 ; # IO_L59N_2
+#NET "s_fmc_prsnt_b"  LOC="Y2"   | IOSTANDARD=LVCMOS25 ; # IO_L1P_3
+#NET "s_fmc_scl"      LOC="V15"  | IOSTANDARD=LVCMOS25 ; # IO_L13N_D10_2
+#NET "s_fmc_sda"      LOC="T7"   | IOSTANDARD=LVCMOS25 ; # IO_L60P_2
+
+############
+# FTDI USB #
+############
+NET "usb_rxf"         LOC="H1"   | IOSTANDARD=LVCMOS25 ; # IO_L47N_M3A1_3
+NET "usb_txe"         LOC="P5"   | IOSTANDARD=LVCMOS25 ; # IO_L8N_3
+NET "usb_rd"          LOC="L6"   | IOSTANDARD=LVCMOS25 ; # IO_L25N_3
+NET "usb_wr"          LOC="M5"   | IOSTANDARD=LVCMOS25 ; # IO_L31P_3
+NET "usb_siwua"       LOC="L3"   | IOSTANDARD=LVCMOS25 ; # IO_L39P_M3LDQS_3
+#NET "s_ftdi_acbus<5>" LOC="K3"   | IOSTANDARD=LVCMOS25 ; # IO_L44P_GCLK21_M3A5_3
+#NET "s_ftdi_acbus<6>" LOC="L1"   | IOSTANDARD=LVCMOS25 ; # IO_L39N_M3LDQSN_3
+#NET "s_ftdi_acbus<7>" LOC="M6"   | IOSTANDARD=LVCMOS25 ; # IO_L25P_3
+
+NET "usb_dio<0>"      LOC="N4"   | IOSTANDARD=LVCMOS25 ; # IO_L26N_3
+NET "usb_dio<1>"      LOC="H4"   | IOSTANDARD=LVCMOS25 ; # IO_L46P_M3CLK_3
+NET "usb_dio<2>"      LOC="M2"   | IOSTANDARD=LVCMOS25 ; # IO_L38P_M3DQ2_3
+NET "usb_dio<3>"      LOC="H3"   | IOSTANDARD=LVCMOS25 ; # IO_L46N_M3CLKN_3
+NET "usb_dio<4>"      LOC="K6"   | IOSTANDARD=LVCMOS25 ; # IO_L45P_M3A3_3
+NET "usb_dio<5>"      LOC="M4"   | IOSTANDARD=LVCMOS25 ; # IO_L31N_VREF_3
+NET "usb_dio<6>"      LOC="K2"   | IOSTANDARD=LVCMOS25 ; # IO_L40P_M3DQ6_3
+NET "usb_dio<7>"      LOC="K1"   | IOSTANDARD=LVCMOS25 ; # IO_L40N_M3DQ7_3
+
+#NET "s_ftdi_bcbus<0>" LOC="T2"   | IOSTANDARD=LVCMOS25 ; # IO_L34P_M3UDQS_3
+#NET "s_ftdi_bcbus<1>" LOC="U1"   | IOSTANDARD=LVCMOS25 ; # IO_L33N_M3DQ13_3
+#NET "s_ftdi_bcbus<2>" LOC="V2"   | IOSTANDARD=LVCMOS25 ; # IO_L32P_M3DQ14_3
+#NET "s_ftdi_bcbus<3>" LOC="T3"   | IOSTANDARD=LVCMOS25 ; # IO_L9N_3
+#NET "s_ftdi_bcbus<4>" LOC="V1"   | IOSTANDARD=LVCMOS25 ; # IO_L32N_M3DQ15_3
+#NET "s_ftdi_bcbus<5>" LOC="U4"   | IOSTANDARD=LVCMOS25 ; # IO_L10P_3
+#NET "s_ftdi_bcbus<6>" LOC="T1"   | IOSTANDARD=LVCMOS25 ; # IO_L34N_M3UDQSN_3
+#NET "s_ftdi_bcbus<7>" LOC="V3"   | IOSTANDARD=LVCMOS25 ; # IO_L10N_3
+
+#NET "s_ftdi_bdbus<0>" LOC="P4"   | IOSTANDARD=LVCMOS25 ; # IO_L24N_3
+#NET "s_ftdi_bdbus<1>" LOC="N1"   | IOSTANDARD=LVCMOS25 ; # IO_L37N_M3DQ1_3
+#NET "s_ftdi_bdbus<2>" LOC="P1"   | IOSTANDARD=LVCMOS25 ; # IO_L36N_M3DQ9_3
+#NET "s_ftdi_bdbus<3>" LOC="P2"   | IOSTANDARD=LVCMOS25 ; # IO_L36P_M3DQ8_3
+#NET "s_ftdi_bdbus<4>" LOC="R4"   | IOSTANDARD=LVCMOS25 ; # IO_L24P_3
+#NET "s_ftdi_bdbus<5>" LOC="R1"   | IOSTANDARD=LVCMOS25 ; # IO_L35N_M3DQ11_3
+#NET "s_ftdi_bdbus<6>" LOC="R3"   | IOSTANDARD=LVCMOS25 ; # IO_L35P_M3DQ10_3
+#NET "s_ftdi_bdbus<7>" LOC="T4"   | IOSTANDARD=LVCMOS25 ; # IO_L9P_3
+
+#NET "s_ftdi_pwren_b" LOC="U3"   | IOSTANDARD=LVCMOS25 ; # IO_L33P_M3DQ12_3
+NET "usb_rst_n"       LOC="P3"   | IOSTANDARD=LVCMOS25 ; # IO_L26P_3
+#NET "s_ftdi_suspend_b" LOC="N3"   | IOSTANDARD=LVCMOS25 ; # IO_L37P_M3DQ0_3
+
+##########################
+# Kintex-7 Configuration #
+##########################
+#NET "k_conf_cclk"       LOC="J4"   | IOSTANDARD=LVCMOS25 ; # IO_L44N_GCLK20_M3A6_3
+#NET "k_conf_csi_b"      LOC="H2"   | IOSTANDARD=LVCMOS25 ; # IO_L47P_M3A0_3
+#NET "k_conf_d<0>"       LOC="D1"   | IOSTANDARD=LVCMOS25 ; # IO_L53N_M3A12_3
+#NET "k_conf_d<1>"       LOC="D2"   | IOSTANDARD=LVCMOS25 ; # IO_L53P_M3CKE_3
+#NET "k_conf_d<2>"       LOC="B1"   | IOSTANDARD=LVCMOS25 ; # IO_L60N_3
+#NET "k_conf_d<3>"       LOC="C3"   | IOSTANDARD=LVCMOS25 ; # IO_L54P_M3RESET_3
+#NET "k_conf_d<4>"       LOC="C4"   | IOSTANDARD=LVCMOS25 ; # IO_L81N_3
+#NET "k_conf_d<5>"       LOC="D3"   | IOSTANDARD=LVCMOS25 ; # IO_L81P_3
+#NET "k_conf_d<6>"       LOC="E4"   | IOSTANDARD=LVCMOS25 ; # IO_L58N_3
+#NET "k_conf_d<7>"       LOC="E5"   | IOSTANDARD=LVCMOS25 ; # IO_L82P_3
+#NET "k_conf_d<8>"       LOC="E3"   | IOSTANDARD=LVCMOS25 ; # IO_L52P_M3A8_3
+#NET "k_conf_d<9>"       LOC="C1"   | IOSTANDARD=LVCMOS25 ; # IO_L54N_M3A11_3
+#NET "k_conf_d<10>"      LOC="B2"   | IOSTANDARD=LVCMOS25 ; # IO_L60P_3
+#NET "k_conf_d<11>"      LOC="A2"   | IOSTANDARD=LVCMOS25 ; # IO_L83P_3
+#NET "k_conf_d<12>"      LOC="F3"   | IOSTANDARD=LVCMOS25 ; # IO_L51N_M3A4_3
+#NET "k_conf_d<13>"      LOC="B3"   | IOSTANDARD=LVCMOS25 ; # IO_L83N_VREF_3
+#NET "k_conf_d<14>"      LOC="D5"   | IOSTANDARD=LVCMOS25 ; # IO_L58P_3
+#NET "k_conf_d<15>"      LOC="E6"   | IOSTANDARD=LVCMOS25 ; # IO_L82N_3
+#NET "k_conf_done"       LOC="F5"   | IOSTANDARD=LVCMOS25 ; # IO_L55N_M3A14_3
+#NET "k_conf_dout_cso_b" LOC="F1"   | IOSTANDARD=LVCMOS25 ; # IO_L50N_M3BA2_3
+#NET "k_conf_emcclk"     LOC="F2"   | IOSTANDARD=LVCMOS25 ; # IO_L50P_M3WE_3
+#NET "k_conf_fcs_b"      LOC="E1"   | IOSTANDARD=LVCMOS25 ; # IO_L52N_M3A9_3
+#NET "k_conf_init_b"     LOC="A4"   | IOSTANDARD=LVCMOS25 ; # IO_L1N_VREF_0
+#NET "k_conf_program_b"  LOC="G3"   | IOSTANDARD=LVCMOS25 ; # IO_L48P_M3BA0_3
+#NET "k_conf_rdwr_b"     LOC="G1"   | IOSTANDARD=LVCMOS25 ; # IO_L48N_M3BA1_3
+
+###########################
+# Spartan-6 Configuration #
+###########################
+#NET "s_conf_cclk"    LOC="Y21"  | IOSTANDARD=LVCMOS25 ; # IO_L1P_CCLK_2
+#NET "s_conf_csi_b"   LOC="AB20" | IOSTANDARD=LVCMOS25 ; # IO_L3N_MOSI_CSI_B_MISO0_2
+#NET "s_conf_cso_b"   LOC="T5"   | IOSTANDARD=LVCMOS25 ; # IO_L65N_CSO_B_2
+#NET "s_conf_d<0>"    LOC="AA20" | IOSTANDARD=LVCMOS25 ; # IO_L3P_D0_DIN_MISO_MISO1_2
+#NET "s_conf_d<1>"    LOC="U14"  | IOSTANDARD=LVCMOS25 ; # IO_L12P_D1_MISO2_2
+#NET "s_conf_d<2>"    LOC="U13"  | IOSTANDARD=LVCMOS25 ; # IO_L12N_D2_MISO3_2
+#NET "s_conf_d<3>"    LOC="AA6"  | IOSTANDARD=LVCMOS25 ; # IO_L49P_D3_2
+#NET "s_conf_d<4>"    LOC="AB6"  | IOSTANDARD=LVCMOS25 ; # IO_L49N_D4_2
+#NET "s_conf_d<5>"    LOC="W4"   | IOSTANDARD=LVCMOS25 ; # IO_L62P_D5_2
+#NET "s_conf_d<6>"    LOC="Y4"   | IOSTANDARD=LVCMOS25 ; # IO_L62N_D6_2
+#NET "s_conf_d<7>"    LOC="Y7"   | IOSTANDARD=LVCMOS25 ; # IO_L48P_D7_2
+#NET "s_conf_hswapen" LOC="A3"   | IOSTANDARD=LVCMOS25 ; # IO_L1P_HSWAPEN_0
+#NET "s_conf_init_b"  LOC="T6"   | IOSTANDARD=LVCMOS25 ; # IO_L65P_INIT_B_2
+#NET "s_conf_m0"      LOC="AA22" | IOSTANDARD=LVCMOS25 ; # IO_L1N_M0_CMPMISO_2
+#NET "s_conf_m1"      LOC="U15"  | IOSTANDARD=LVCMOS25 ; # IO_L13P_M1_2
+#NET "s_conf_rdwr_b"  LOC="AB7"  | IOSTANDARD=LVCMOS25 ; # IO_L48N_RDWR_B_VREF_2
+
+############
+# Reserved #
+############
+# Test Pad
+#NET "s_rsvio<0>"     LOC="N7"   | IOSTANDARD=LVCMOS25 ; # IO_L11N_3
+
+# Fan Controller
+#NET "k_fan_pwm"      LOC="N19"  | IOSTANDARD=LVCMOS15 ; # IO_L53N_VREF_1
+
+# Watchdog Timer
+#NET "s_wtd_wdi"      LOC="R9"   | IOSTANDARD=LVCMOS25 ; # IO_L59P_2
+#NET "s_wdt_wdo_b"    LOC="R22"  | IOSTANDARD=LVCMOS15 ; # IO_L49N_M1DQ11_1
+
+# for FTDI EEPROM emulation
+#NET "s_eeprom_cs"    LOC="P6"   | IOSTANDARD=LVCMOS25 ; # IO_L8P_3
+#NET "s_eeprom_di"    LOC="R7"   | IOSTANDARD=LVCMOS25 ; # IO_L60N_2
+#NET "s_eeprom_do"    LOC="P8"   | IOSTANDARD=LVCMOS25 ; # IO_L7P_3
+#NET "s_eeprom_sk"    LOC="P7"   | IOSTANDARD=LVCMOS25 ; # IO_L7N_3
+#NET "s_ftdi_eeprom_cs" LOC="W1"   | IOSTANDARD=LVCMOS25 ; # IO_L2N_3
+#NET "s_ftdi_eeprom_di" LOC="W3"   | IOSTANDARD=LVCMOS25 ; # IO_L2P_3
+#NET "s_ftdi_eeprom_do" LOC="Y1"   | IOSTANDARD=LVCMOS25 ; # IO_L1N_VREF_3
+#NET "s_ftdi_eeprom_sk" LOC="L4"   | IOSTANDARD=LVCMOS25 ; # IO_L42N_GCLK24_M3LDM_3
+
+# Spartan-6 LX45 FGG484 unused pins for migration
+#CONFIG PROHIBIT="Y16";
+#CONFIG PROHIBIT="W15";
+#CONFIG PROHIBIT="T12";
+#CONFIG PROHIBIT="U12";
+#CONFIG PROHIBIT="T8";
+#CONFIG PROHIBIT="U8";
+#CONFIG PROHIBIT="T10";
+#CONFIG PROHIBIT="U10";
+#CONFIG PROHIBIT="W6";
+#CONFIG PROHIBIT="Y6";
+#CONFIG PROHIBIT="Y5";
+#CONFIG PROHIBIT="AB5";
+
+# Spartan-6 LX100 FGG484  unused pins for migration
+#CONFIG PROHIBIT="D12";
+#CONFIG PROHIBIT="D13";
+#CONFIG PROHIBIT="E10";
+#CONFIG PROHIBIT="E12";
+#CONFIG PROHIBIT="E14";
+#CONFIG PROHIBIT="E8";
+#CONFIG PROHIBIT="F10";
+#CONFIG PROHIBIT="F12";
+#CONFIG PROHIBIT="F13";
+#CONFIG PROHIBIT="F14";
+#CONFIG PROHIBIT="F15";
+#CONFIG PROHIBIT="F8";
+#CONFIG PROHIBIT="F9";
+#CONFIG PROHIBIT="G11";
+#CONFIG PROHIBIT="G13";
+#CONFIG PROHIBIT="G8";
+#CONFIG PROHIBIT="G9";
+#CONFIG PROHIBIT="H10";
+#CONFIG PROHIBIT="H11";
+#CONFIG PROHIBIT="H12";
+#CONFIG PROHIBIT="H13";
+#CONFIG PROHIBIT="H14";
