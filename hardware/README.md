@@ -13,11 +13,12 @@
   - [Output of Functional Simulation](#output-of-functional-simulation)
   - [Estimated Execution Time of Simulation](#estimated-execution-time-of-simulation)
   - [Tested Environment](#tested-environment)
-- [Synthesis](#synthesis)
-  - [Instructions on Synthesis](#instructions-on-synthesis)
+- [ASIC Synthesis using DC](#asic-synthesis-using-dc)
+  - [Synthesis Instructions](#synthesis-instructions-dc)
   - [Output of Synthesis](#output-of-synthesis)
   - [Estimated Execution Time of Synthesis](#estimated-execution-time-of-synthesis)
   - [Modify Scripts](#modify-scripts)
+- [FPGA Synthesis using Vivado](#fpga-synthesis-using-vivado)
 - [Contact](#contact)
 - [License](#license)
 
@@ -147,11 +148,11 @@ make run_SHAKE256
   
 
 
-## Synthesis
+## ASIC Synthesis using DC
 
 We used Synopsys Design Compiler Version P-2019.03 for linux64.
 
-### Instructions on Synthesis
+### Synthesis Instructions (DC)
 
 ***Library setup***
 
@@ -177,7 +178,7 @@ Enter the `.\syn\run\` directory and run the script:
 - The output directory is `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main`.
 - Check the timing report at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\report\keccak_top.report_timing`.
 - Check the area report at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\report\keccak_top.area-hier.rpt`.
-- The generated netlist is at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\db\keccak_top.v`.
+- The generated netlist is at `.\syn\out_dir\zhao_keccak_top_CLK_PERIOD_1.310_typical_autoWLM_dc_main\db\keccak_top.v`. We provide a copy of this netlist file at `.\syn\netlist\keccak_top.v` for reference.
 
 ### Estimated Execution Time of Synthesis
 
@@ -191,6 +192,23 @@ Enter the `.\syn\run\` directory and run the script:
 - `.\syn\constraint\`: Timing constraints
 - `.\syn\script\`: DC synthesis scripts
 - `.\syn\out_dir\`: Output directory
+
+## FPGA Synthesis using Vivado
+
+Our design can also be directly implemented on an FPGA. Below, we provide a reference flow for synthesizing the design using Vivado.
+
+- **Software**: We used the free version of [Vivado ML Standard 2024.1](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools.html).
+- **Create a New Project**:
+  - Select **RTL Project**.
+  - **Add Sources**: Add all Verilog files from the `.\src_rtl\` directory.
+  - **Add Constraints**: Skip this step unless needed for your specific application.
+  - **Choose Default Part**: Select the FPGA device model. We use `xc7a100tcsg324-1` as an example.
+- **Synthesis Settings**:
+  - In the menu `Flow -> Settings -> Synthesis Settings`, change the `-flatten_hierarchy` parameter to `none` (to maintain the hierarchy and prevent any optimization that could affect the security).
+  - Other settings can be configured as needed, which we omit here.
+- **Run Synthesis**: In our environment, this process takes approximately 1 minute.
+  - Our synthesis results: **10,316 LUTs, 6,408 FFs**.
+- Our design cannot proceed directly to subsequent steps (e.g., implementation) due to an excessive number of top-level ports. If you plan to integrate this design into a higher-level project, the typical next steps might include implementation, bitstream generation, and device programming.
 
 ## Contact
 
