@@ -160,10 +160,26 @@ Our primary experimental setup includes a testing board, an oscilloscope, and a 
 ### File Structure (TVLA)
 
 - `.\TVLA\sakura-x\`: RTL codes for SAKURA-X
-  - `.\TVLA\sakura-x\target\`: RTL codes for target FPGA
-  - `.\TVLA\sakura-x\controller\`: RTL codes for controller FPGA
+  - `.\TVLA\sakura-x\target\sakura_x_main_fpga.v`: Top module for the target FPGA
+    - `.\TVLA\sakura-x\target\mkMainFPGA.v`: [BSV](https://github.com/B-Lang-org/bsc/releases/latest/download/BSV_lang_ref_guide.pdf)-generated Verilog code, main functionality except for DUT
+      - `.\TVLA\sakura-x\target\dut_wrapper.v`: Wrapper for the `keccak_top` module, interfacing with the BSV portion
+      - `.\TVLA\sakura-x\target\BRAM1.v`: BRAM from the official [BSC](https://github.com/B-Lang-org/bsc/) library
+      - `.\TVLA\sakura-x\target\FIFO2.v`: FIFO from the official [BSC](https://github.com/B-Lang-org/bsc/) library
+  - `.\TVLA\sakura-x\target\sakura_x_main_fpga.xdc`: Pin constraints for the target FPGA
+  - `.\TVLA\sakura-x\controller\sakura_x_ctrl_fpga.v`: Top module for the controller FPGA
+    - `.\TVLA\sakura-x\controller\mkCtrlFPGA.v`: BSV-generated Verilog code, implements the main controller functionality
+      - `.\TVLA\sakura-x\controller\FIFO2.v`: FIFO from the official BSC library
+  - `.\TVLA\sakura-x\controller\sakura_x_ctrl_fpga.ucf`: Pin constraints for the controller FPGA
+- `.\scripts\`: Python scripts for TVLA traces collection
+  - `.\scripts\ttest.py`: Main script for traces collection
+    - `.\scripts\myttest.py`: Wrapper for various steps of the experimental process
+      - `.\scripts\myprotocol.py`: Functions for communicating with SAKURA
+        - `.\scripts\protocol.toml`: Protocol definitions for communication with SAKURA
 
-- measurement script
+    - `.\scripts\mybytes.py`: Utility for processing byte data
+    - `.\scripts\testvector_correct.txt`: Test vectors
+    - `.\scripts\log_config.toml`: Log configuration
+
 
 ### Controller and Target Design on SAKURA-X
 
@@ -175,7 +191,7 @@ On the **Target FPGA**, in addition to the design under test, we integrated a Tr
 
 On the **Controller FPGA**, there is an asynchronous FIFO communication module with the FT2232H, a communication module with the Target FPGA, and the core experiment control module. The control module can automatically manage the Target FPGA to perform multiple encryption operations based on configuration. The order of the fix and random groups is controlled by a Trivium-based PRNG, and the generation of random inputs for the random group, as well as the input masks for both groups, is handled by another local Trivium-based PRNG.
 
-The Controller communicates with the host PC via a UART serial interface, with the **communication protocol** detailed in the table below:
+The Controller communicates with the host PC via a UART serial interface, with the communication protocol detailed in the table below. Specific commands and data addresses are defined in the `.\scripts\protocol.toml` file.
 
 | Protocol Name    | Message Type      | Packet Size | Message Length | Header Length | Header Slice 1 | Destination or Source            | Header Slice 2 | Message Type            | Header Slice 3                 | Description                   | Body Length | Description |
 | ---------------- | ----------------- | ----------- | -------------- | ------------- | -------------- | -------------------------------- | -------------- | ----------------------- | ------------------------------ | ----------------------------- | ----------- | ----------- |
@@ -184,13 +200,33 @@ The Controller communicates with the host PC via a UART serial interface, with t
 | HostToController | Data Transmission | 8bit        | 5 P            | 3 P           | 1st P          | 0-Target FPGA, 1-Controller FPGA | [7:6] in 2nd P | 2'b10-Data Transmission | [5:0] in 2nd P, [7:0] in 3rd P | Address for Data Transmission | 2 P         | Data        |
 | ControllerToHost | Data Transmission | 8bit        | 3 P            | 1 P           | 1st P          | 0-Target FPGA, 1-Controller FPGA | -              | -                       | -                              | -                             | 2 P         | Data        |
 
-Command & Address TBD
-
 ### Measurement Scripts
 
-TBD
+**Communication with SAKURA**: 
 
-~70 hours
+- The communication protocol is defined in the `.\scripts\protocol.toml` file.
+- Python functions for communication are provided in the `.\scripts\myprotocol.py` library.
+- Usage examples can be found in `.\scripts\myttest.py`.
+
+**Testing Process Overview**: The corresponding script is `.\scripts\ttest.py`.
+
+1. **SAKURA Connection and Functional Testing**: Includes serial port connection, communication testing, DUT testing with test vectors, and sequence mode testing (where the DUT runs multiple algorithm iterations while interacting with the host once, corresponding to the oscilloscope’s sequence acquisition mode).
+2. **Oscilloscope Connection and Configuration**: The oscilloscope is configured according to predefined settings. The Python library code for this part is not provided; refer to the notes section below.
+3. **Waveform Collection**: Waveforms are collected repeatedly until the required number is reached. The approximate steps per loop are as follows (corresponding to the `sequence` function in `.\scripts\myttest.py`):
+   - **Oscilloscope Arm Trigger**: The oscilloscope is set to sequence mode and will return all waveforms after a fixed number of triggers.
+   - **Send Start Command to SAKURA Controller FPGA**: Instructs the Controller FPGA to begin the sequence mode experiment.
+   - **Maintain a Trivium-Based PRNG on the Host**: Synchronize with the Controller FPGA to verify the number of experiments.
+   - **Wait for SAKURA to Finish Execution**: Read and verify the PRNG value on the Controller FPGA.
+   - **Request Waveforms from the Oscilloscope**: Handle any oscilloscope exceptions.
+   - **Assign Waveforms to Fix and Random Groups**: Based on the PRNG on the host, waveforms are assigned to their respective groups (fixed group or random group) and stored.
+4. **T-test Calculation**: This artifact does not include a script for t-test calculations. We recommend using the [SCAred](https://eshard.gitlab.io/scared/README.html) library and the paper [*Leakage Assessment Methodology: A Clear Roadmap for Side-Channel Evaluations*](https://doi.org/10.1007%2F978-3-662-48324-4) for reference.
+
+**Time Estimate**: In our environment, trace collection takes approximately 70 hours.
+
+**Notes**:
+
+- Due to variations in experimental setups, the provided scripts may require debugging and adjustments.
+- Regarding oscilloscope communication, different brands use different libraries. For our WaveRunner oscilloscope, we used the [lecroydso](https://github.com/gottmic/lecroydso) library.
 
 ## Contact
 

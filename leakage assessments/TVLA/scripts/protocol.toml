@@ -1,0 +1,162 @@
+# protocol, custom protocol for SAKURA
+# Copyright (C) 2024, Cankun Zhao, Leibo Liu. All rights reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTERS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Please see LICENSE and README for license and further instructions.
+#
+# Contact: zhaock97@gmail.com
+description = """
+Little-endian.
+Each address corresponds to two bytes.
+
+Abbreviations:
+Main       Main/Target FPGA
+Ctrl       Controller FPGA
+Instr      Instruction
+Acq        Acquire
+Trans      Data transfer
+Addr       Address
+Msg        Message
+Pkt        Packet
+Dest       Destination
+Src        Source
+Ifc        Interface
+Pln        Plaintext
+Cph        Ciphertext
+Sh         Share"""
+
+##############################################################
+# Basic types
+
+[Byte]
+description = "Basic types"
+type   = "synonym"
+width  = 8
+member = "Bit#(8)"
+
+[Word]
+type   = "synonym"
+width  = 16
+member = "Bit#(16)"
+
+[Addr]
+type   = "synonym"
+width  = 14
+member = "Bit#(14)"
+
+[FPGALabel]
+type   = "enum"
+width  = 1
+[FPGALabel.member]
+Main   = 0
+Ctrl   = 1
+
+[MsgType]
+type   = "enum"
+width  = 2
+[MsgType.member]
+Instr  = 0
+Acq    = 1
+Trans  = 2
+
+[BasicHeader]
+type   = "struct"
+width  = 16
+[BasicHeader.member]
+msgType = "MsgType"
+addr    = "Addr"
+
+
+##############################################################
+# Main message content
+
+[MainInstr]
+description = "Main Instruction"
+type   = "enum"
+width  = 14
+[MainInstr.member]
+RstAll   = 0x2000
+StartEnc = 0x0001
+InitDUT  = 0x0002
+InitPRNG = 0x0004
+RandOff  = 0x0008
+RandOn   = 0x0010
+
+[MainAddrID]
+description = "Main Acq & Trans Addr"
+type   = "enum"
+width  = 7
+[MainAddrID.member]
+PlnSh0 = 0x00
+PlnSh1 = 0x01
+# PlnSh2 = 0x02
+CphSh0 = 0x20
+CphSh1 = 0x21
+# CphSh2 = 0x22
+Seed   = 0x30
+Test   = 0x7f
+
+[MainAddr]
+type   = "struct"
+width  = 14
+[MainAddr.member]
+id     = "MainAddrID"
+index  = "Bit#(7)"
+
+[MainResp]
+description = "Pre-defined response for Main FPGA"
+type   = "enum"
+width  = 16
+[MainResp.member]
+Test    = 0x4522
+EncDone = 0xdddd
+
+##############################################################
+# Ctrl message content
+
+[CtrlInstr]
+description = "Ctrl Instruction"
+type   = "enum"
+width  = 14
+[CtrlInstr.member]
+RstAll   = 0x2000
+StartSeq = 0x0001
+InitPRNG = 0x0002
+
+[CtrlAddrID]
+description = "Ctrl Acq & Trans Addr"
+type   = "enum"
+width  = 7
+[CtrlAddrID.member]
+FixPln    = 0x00
+SeqNum    = 0x10
+ShareNum  = 0x11
+SeedCoin  = 0x20
+SeedShare = 0x21
+PrngCoin  = 0x30
+PrngShare = 0x31
+Test      = 0x7f
+
+[CtrlAddr]
+type   = "struct"
+width  = 14
+[CtrlAddr.member]
+id     = "CtrlAddrID"
+index  = "Bit#(7)"
+
+[CtrlResp]
+description = "Pre-defined response for Ctrl FPGA"
+type   = "enum"
+width  = 16
+[CtrlResp.member]
+Test   = 0xfffc

@@ -31,7 +31,7 @@ We bridge this gap by conducting detailed leakage path and data dependency analy
 
 ## Repository Content
 
-This repository is divided into two main sections: [hardware](./hardware/README.md) and [software](./software/README.md).
+This repository is divided into three main sections: [hardware](./hardware/README.md), [software](./software/README.md), and [leakage assessments](<./leakage assessments/README.md>).
 
 - [**Hardware Implementation**](./hardware/README.md):
    - **RTL Code**: Implementation of the proposed SHA-3 design.
@@ -40,7 +40,12 @@ This repository is divided into two main sections: [hardware](./hardware/README.
 - [**Security Analysis Tools**](./software/README.md):
    - **DOM-Keccak Leakage Analysis**: Code for conducting leakage analysis on the SHA-3 implementation.
    - **Design Space Exploration**: Programs for exploring different design configurations.
-   - **Security Proofs**: Code supporting the theoretical security proofs provided in the paper.
+   - **Security Proofs**: Code supporting the security proofs under the glitch+register-transition-robust probing model in the paper.
+- [**Leakage Assessments**](<./leakage assessments/README.md>):
+   - **PROLEAD**: Instructions, configuration files, output reports, and data processing scripts for testing our design using [PROLEAD](https://github.com/ChairImpSec/PROLEAD).
+   - **Test Vector Leakage Assessment (TVLA)**: Our TVLA experiment instructions, RTL code for the testing board, and some testing scripts.
+   - **VerMI**: Detailed instructions for testing non-completeness of our design using [VerMI](https://github.com/vmarribas/VerMFi).
+
 
 Detailed instructions and usage information for each part can be found in the README files within the respective subdirectories.
 

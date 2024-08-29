@@ -1,0 +1,59 @@
+# log_config, configuration of logging
+# Copyright (C) 2024, Cankun Zhao, Leibo Liu. All rights reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTERS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Please see LICENSE and README for license and further instructions.
+#
+# Contact: zhaock97@gmail.com
+version   = 1
+[formatters.simple]
+format    = '%(name)s - %(levelname)s - %(message)s'
+[formatters.time]
+format    = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+[formatters.verbose]
+format    = '%(asctime)s - %(filename)s - %(module)s - %(funcName)s - %(lineno)d - [%(levelname)s] - %(message)s'
+[handlers.console]
+class     = 'logging.StreamHandler'
+level     = 'INFO'
+formatter = 'simple'
+[handlers.file]
+class     = 'logging.FileHandler'
+level     = 'DEBUG'
+formatter = 'verbose'
+filename  = 'testlog.log'
+mode      = 'w'
+[handlers.email]
+class     = 'logging.handlers.SMTPHandler'
+level     = 'CRITICAL'
+formatter = 'verbose'
+mailhost  ='smtp.126.com'
+fromaddr  ='your@126.com'
+toaddrs   =['zhaock15@126.com']
+subject   ='Critical Error in TTest'
+credentials =['your@126.com', 'smtppassword']
+[loggers.myttest]
+level     = 'INFO'
+handlers  = ['console']
+propagate = 0
+# [loggers.test]
+# level     = 'CRITICAL'
+# handlers  = ['email']
+# propagate = 0
+# [loggers.pyvisa]
+# level     = 'DEBUG'
+# handlers  = ['file']
+# propagate = 0
+# [loggers.mywaverunner]
+# level     = 'DEBUG'
+# handlers  = ['file']
+# propagate = 0
