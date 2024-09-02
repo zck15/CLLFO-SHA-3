@@ -171,7 +171,7 @@ Our primary experimental setup includes a testing board, an oscilloscope, and a 
       - `.\TVLA\sakura-x\controller\FIFO2.v`: FIFO from the official BSC library
   - `.\TVLA\sakura-x\controller\sakura_x_ctrl_fpga.ucf`: Pin constraints for the controller FPGA
 - `.\scripts\`: Python scripts for TVLA traces collection
-  - `.\scripts\ttest.py`: Main script for traces collection
+  - `.\scripts\collect_traces.py`: Main script for traces collection
     - `.\scripts\myttest.py`: Wrapper for various steps of the experimental process
       - `.\scripts\myprotocol.py`: Functions for communicating with SAKURA
         - `.\scripts\protocol.toml`: Protocol definitions for communication with SAKURA

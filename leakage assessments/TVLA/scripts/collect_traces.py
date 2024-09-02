@@ -1,4 +1,4 @@
-# ttest, collect traces for TVLA
+# collect_traces, collect traces for TVLA
 # Copyright (C) 2024, Cankun Zhao, Leibo Liu. All rights reserved.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -16,6 +16,8 @@
 #
 # Contact: zhaock97@gmail.com
 # import packages
+import sys
+sys.path.append('.\\lib')
 import scared
 import serial
 import myttest
@@ -32,7 +34,8 @@ DUTNAME = 'keccak'
 ASSESS  = 'ttest'
 PRNGON  = True
 NSHARES = 2
-NTRACES = 150000
+NTRACES = 300_000_000
+NTRACES_GROUP = 100_000_000
 FIXPLN  = 'r3f0'
 
 ONOFF   = {True:'on', False:'off'}
@@ -48,7 +51,7 @@ logger = logging.getLogger('test')
 logger.info(f'Start Test')
 
 # Connect sakura
-sakura = serial.Serial('COM3', 9600)
+sakura = serial.Serial('COM9', 9600)
 
 # Communication test
 myttest.comm_test(sakura)
@@ -91,15 +94,21 @@ etsb = scared.traces.ETSWriter(
     './traces/{}_fixed.ets'.format(TESTNAME), overwrite=True)
 
 logger.info(f'Start sequence')
+cnt_r = 0
+cnt_f = 0
 try:
     for i in trange(ceil(NTRACES/n_seq)):
         try:
-            myttest.sequence(wav, sakura, prng_coin, etsa, etsb)
+            n_r, n_f = myttest.sequence(wav, sakura, prng_coin, etsa, etsb)
+            cnt_r += n_r
+            cnt_f += n_f
         except RuntimeError as e:
             logger.error(f'Error in loop {i}\n{e}', exc_info=True)
             etsa.close()
             etsb.close()
             raise e
+        if cnt_r > NTRACES_GROUP and cnt_f > NTRACES_GROUP:
+            break
 
     etsa.close()
     etsb.close()
