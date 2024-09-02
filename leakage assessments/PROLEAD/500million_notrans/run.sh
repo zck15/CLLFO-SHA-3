@@ -1,0 +1,1 @@
+/path_to_PROLEAD/release/PROLEAD -lf /path_to_PROLEAD/library.lib -df ../../../hardware/syn/netlist/keccak.top -mn keccak_top -cf config.set 2>&1 | tee Report.dat
