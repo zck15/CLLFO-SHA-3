@@ -1,6 +1,14 @@
-Copyright (c) 2024, Cankun Zhao, Leibo Liu
+# License
 
-All rights reserved
+This repository includes files under several licenses. Please refer to the specific license for each file or directory as outlined below:
+
+## 1. Main Project License
+
+All files in this repository, unless otherwise specified, are licensed under the following license:
+
+```
+Copyright (C) 2024, Cankun Zhao, Leibo Liu
+All rights reserved.
 
 This program is free software; You may use it or parts of it or modify it under the following terms:
 
@@ -19,3 +27,131 @@ This program is free software; You may use it or parts of it or modify it under 
 (6) If this software is used credit must be given to the "Tsinghua University, China" as the authors of the parts of the software used. This can be in the form of a textual message at program startup or at *beginning* of the documentation (online or textual) provided with the package.
 
 If you are interested in commercial use, please contact: 'zck22@mails.tsinghua.edu.cn' and 'liulb@tsinghua.edu.cn'
+```
+
+## 2. PROLEAD License
+
+The following files are from or modified from the PROLEAD project and are licensed under the BSD 3-Clause License:
+
+- Files in `leakage assessments/PROLEAD/500million_notrans`
+- Files in `leakage assessments/PROLEAD/500million_trans`
+
+```
+Copyright (c) 2022, ChairImpSec
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+For more information, please visit the PROLEAD project website: https://github.com/ChairImpSec/PROLEAD
+
+## 3. BSC License
+
+The following files are from the Bluespec Compiler (BSC) project and are licensed under the BSD 3-Clause License:
+
+- `leakage assessments/TVLA/sakura-x/controller/FIFO2.v`
+- `leakage assessments/TVLA/sakura-x/target/BRAM1.v`
+- `leakage assessments/TVLA/sakura-x/target/FIFO2.v`
+
+```
+Copyright (c) 2020 Bluespec, Inc. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the
+   distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived
+   from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+For more information, please visit the BSC project website: https://github.com/B-Lang-org/bsc
+
+## 4. SASEBO License
+
+The following file is from the SASEBO project and are licensed under the following license:
+
+- `leakage assessments/TVLA/sakura-x/controller/sakura_x_ctrl_fpga.ucf`
+
+```
+Copyright (C) 2012, 2013 AIST
+
+By using this code, you agree to the following terms and conditions.
+
+This code is copyrighted by AIST ("us").
+
+Permission is hereby granted to copy, reproduce, redistribute or
+otherwise use this code as long as: there is no monetary profit gained
+specifically from the use or reproduction of this code, it is not sold,
+rented, traded or otherwise marketed, and this copyright notice is
+included prominently in any copy made.
+
+We shall not be liable for any damages, including without limitation
+direct, indirect, incidental, special or consequential damages arising
+from the use of this code.
+```
+
+For more information, please visit the SASEBO project website: http://www.risec.aist.go.jp/project/sasebo/
+
+## 5. NIST CAVP License
+
+The following files are from the National Institute of Standards and Technology (NIST) Cryptographic Algorithm Validation Program (CAVP) project and are licensed under the following license:
+
+- Files in `hardware/KAT/` with the `.rsp` extension
+
+```
+This data/work was created by employees of the National Institute of Standards and Technology (NIST), an agency of the Federal Government. Pursuant to title 17 United States Code Section 105, works of NIST employees are not subject to copyright protection in the United States.  This data/work may be subject to foreign copyright.
+
+The data/work is provided by NIST as a public service and is expressly provided “AS IS.” NIST MAKES NO WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR STATUTORY, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT AND DATA ACCURACY. NIST does not warrant or make any representations regarding the use of the data or the results thereof, including but not limited to the correctness, accuracy, reliability or usefulness of the data. NIST SHALL NOT BE LIABLE AND YOU HEREBY RELEASE NIST FROM LIABILITY FOR ANY INDIRECT, CONSEQUENTIAL, SPECIAL, OR INCIDENTAL DAMAGES (INCLUDING DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, AND THE LIKE), WHETHER ARISING IN TORT, CONTRACT, OR OTHERWISE, ARISING FROM OR RELATING TO THE DATA (OR THE USE OF OR INABILITY TO USE THIS DATA), EVEN IF NIST HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+To the extent that NIST may hold copyright in countries other than the United States, you are hereby granted the non-exclusive irrevocable and unconditional right to print, publish, prepare derivative works and distribute the NIST data, in any medium, or authorize others to do so on your behalf, on a royalty-free basis throughout the world.
+
+You may improve, modify, and create derivative works of the data or any portion of the data, and you may copy and distribute such modifications or works. Modified works should carry a notice stating that you changed the data and should note the date and nature of any such change. Please explicitly acknowledge the National Institute of Standards and Technology as the source of the data:  Data citation recommendations are provided at https://www.nist.gov/open/license.
+
+Permission to use this data is contingent upon your acceptance of the terms of this agreement and upon your providing appropriate acknowledgments of NIST’s creation of the data/work.
+```
+
+For more information, please visit the CAVP project website: https://csrc.nist.gov/Projects/Cryptographic-Algorithm-Validation-Program
