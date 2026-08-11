@@ -1,3 +1,7 @@
+
+[
+</think>
+
 ## Repository Overview
 
 Welcome to the source code repository for the paper **[Breaking Ground: A New Area Record for Low-Latency First-Order Masked SHA-3]()**, published in *[TCHES 2024 Issue 4]()*. This repository contains all the code and resources necessary to reproduce the results presented in the paper.
@@ -58,4 +62,3 @@ Please contact [Cankun Zhao](https://github.com/zck15) ([zck22@mails.tsinghua.ed
 Copyright (c) 2024, Cankun Zhao, Leibo Liu. All rights reserved.
 
 Please see `LICENSE` for further license instructions.
-
